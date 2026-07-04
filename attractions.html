@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attractions - Papamoa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <style>
+        .attractions-hero {
+            width: 100%;
+            height: 40vh;
+            background-image: linear-gradient(rgba(12,3,51,0.55), rgba(12,3,51,0.55)), url('images/attractions-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .attractions-hero h1 {
+            font-size: 72px;
+            color: #fff;
+            font-weight: 600;
+        }
+        .attractions-hero p {
+            color: rgba(255,255,255,0.8);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .attractions-section {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 5%;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .attraction-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .attraction-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+        }
+
+        .attraction-card .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #e0e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #aaa;
+        }
+        .attraction-card .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .attraction-card .card-body {
+            padding: 1.25rem 1.5rem 1.5rem;
+        }
+        .attraction-card .card-tag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #378ADD;
+            margin: 0 0 6px;
+        }
+        .attraction-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0c0333;
+            margin: 0 0 8px;
+        }
+        .attraction-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin: 0 0 14px;
+        }
+        .attraction-card .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 13px;
+            color: #999;
+        }
+        .attraction-card .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .attraction-card .card-meta i {
+            font-size: 15px;
+        }
+        .rating-stars {
+            color: #EF9F27;
+            font-size: 13px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #378ADD;
+            margin: 0 0 10px;
+        }
+        .section-title {
+            font-size: 36px;
+            font-weight: 600;
+            color: #0c0333;
+            margin: 0 0 12px;
+        }
+        .section-sub {
+            font-size: 16px;
+            color: #888;
+            max-width: 520px;
+        }
+
+        .map-section {
+            background: #f7f9fc;
+            padding: 60px 5%;
+        }
+        .map-section .inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 380px;
+            background: #dde6f0;
+            border-radius: 16px;
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 16px;
+        }
+
+        footer {
+            background: #0c0333;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 28px;
+            font-size: 14px;
+        }
+        footer a { color: #fff; text-decoration: none; }
+
+        @media (max-width: 900px) {
+            .attractions-grid { grid-template-columns: repeat(2, 1fr); }
+            .attractions-hero h1 { font-size: 48px; }
+        }
+        @media (max-width: 560px) {
+            .attractions-grid { grid-template-columns: 1fr; }
+            .attractions-hero h1 { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav style="background: #0c0333; position: relative; padding: 20px 8%;">
+        <a href="index.html"><img src="images/logo.png" class="logo" style="width:120px;"></a>
+        <ul style="display:inline-flex; list-style:none; margin-left: auto; gap: 0;">
+            <li style="display:inline-block; margin-left:40px;"><a href="index.html" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">HOME</a></li>
+            <li style="display:inline-block; margin-left:40px;"><a href="attractions.html" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">ATTRACTIONS</a></li>
+            <li style="display:inline-block; margin-left:40px;"><a href="#" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">ACCOMMODATION</a></li>
+            <li style="display:inline-block; margin-left:40px;"><a href="#" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <div class="attractions-hero">
+        <div>
+            <h1>Attractions</h1>
+            <p>Discover the best of Pāpāmoa</p>
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="attractions-section">
+        <p class="section-label">Things to do</p>
+        <h2 class="section-title">Explore Pāpāmoa</h2>
+        <p class="section-sub">From golden beaches to ancient hilltop pā sites — there's something for everyone.</p>
+
+        <div class="attractions-grid">
+
+            <!-- Papamoa Beach -->
+            <div class="attraction-card">
+                <div class="card-img"><img src="images/pap beach.jpg"></div>
+                <div class="card-body">
+                    <p class="card-tag">Beach</p>
+                    <h3>Pāpāmoa Beach</h3>
+                    <p>16km of golden sand stretching along the Bay of Plenty. Lifeguard-patrolled in summer, dog-friendly year round, with free parking, showers and toilets at the reserve.</p>
+                    <div class="card-meta">
+                        <span><i class="ti ti-map-pin"></i> Papamoa Beach Rd</span>
+                        <span><i class="ti ti-sun"></i> Free entry</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hakanini Surf School -->
+            <div class="attraction-card">
+                <div class="card-img"><img src="images/hakanini.jpg"></div>
+                <div class="card-body">
+                    <p class="card-tag">Water Sports</p>
+                    <h3>Hakanini Surf School</h3>
+                    <p>Rated 5 stars by over 300 visitors. Group and private lessons for all ages, kids' holiday programmes, and standalone board hire. Right by the surf lifesaving club.</p>
+                    <div class="card-meta">
+                        <span class="rating-stars">★★★★★</span>
+                        <span><i class="ti ti-clock"></i> Mon–Sun 8am–5pm</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Papamoa Hills -->
+            <div class="attraction-card">
+                <div class="card-img"><img src="images/paphills.jpg"></div>
+                <div class="card-body">
+                    <p class="card-tag">Nature & Culture</p>
+                    <h3>Pāpāmoa Hills Regional Park</h3>
+                    <p>Walk through native forest to panoramic views 224m above sea level. Home to 10 Māori pā sites dating back to the 1500s. Open daily 6:30am–7pm.</p>
+                    <div class="card-meta">
+                        <span><i class="ti ti-clock"></i> ~45 min walk</span>
+                        <span><i class="ti ti-sun"></i> Free entry</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kaiate Falls -->
+            <div class="attraction-card">
+                <div class="card-img"><img src="images/kaiate.webp"></div>
+                <div class="card-body">
+                    <p class="card-tag">Nature</p>
+                    <h3>Kaiate Falls</h3>
+                    <p>A stunning multi-step waterfall hidden in native bush, just 15 minutes from Pāpāmoa. Take the 1-hour loop walk through lush forest to the upper and lower falls.</p>
+                    <div class="card-meta">
+                        <span><i class="ti ti-car"></i> 15 min drive</span>
+                        <span><i class="ti ti-sun"></i> Free entry</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blokarting -->
+            <div class="attraction-card">
+                <div class="card-img"><img src="images/blokart.webp"></div>
+                <div class="card-body">
+                    <p class="card-tag">Adventure</p>
+                    <h3>Blokarting</h3>
+                    <p>Jump in a wind-powered go-kart and tear around the track — no experience needed. Also try drift karting, a three-wheeled electric kart built for drifting. Unique to Pāpāmoa.</p>
+                    <div class="card-meta">
+                        <span><i class="ti ti-map-pin"></i> 176 Parton Rd</span>
+                        <span><i class="ti ti-users"></i> All ages</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Little Big Markets -->
+            <div class="attraction-card">
+                <div class="card-img"><img src="images/lbm.png"></div>
+                <div class="card-body">
+                    <p class="card-tag">Markets</p>
+                    <h3>Little Big Markets</h3>
+                    <p>The best community market in the Bay — local craft stalls, live music and gourmet street food every Saturday morning at Coronation Park, Mount Maunganui.</p>
+                    <div class="card-meta">
+                        <span class="rating-stars">★★★★★</span>
+                        <span><i class="ti ti-clock"></i> Sat 9am–2pm</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Pāpāmoa. Built with ❤️ in the Bay of Plenty.</p>
+    </footer>
+
+</body>
+</html>

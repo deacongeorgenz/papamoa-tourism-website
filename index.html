@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papamoa - A world apart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+
+<body>
+    <div class="hero">
+
+        <video autoplay loop muted playsinline class="video">
+            <source media="(max-width: 768px)" src="images/Vidmobile.mp4" type="video/mp4">
+            <source src="images/vid.mp4" type="video/mp4">
+        </video>
+
+        <nav>
+            <img src="images/logo.png" class="logo">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="attractions.html">ATTRACTIONS</a></li>
+                <li><a href="#">ACCOMMODATION</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <h1>Pāpāmoa</h1>
+            <a href="#">Explore</a>
+        </div>
+
+        <div class="pw-widget" id="papamoa-widget">
+            <div class="pw-loading">Loading conditions…</div>
+        </div>
+
+    </div>
+
+    <script>
+        (function () {
+            const LAT = -37.7049, LON = 176.3433;
+            const SURF_LAT = -37.705, SURF_LON = 176.342;
+            const root = document.getElementById('papamoa-widget');
+            function wmoDesc(c) {
+                if (c === 0) return 'Clear sky'; if (c <= 2) return 'Partly cloudy';
+                if (c === 3) return 'Overcast'; if (c <= 49) return 'Foggy';
+                if (c <= 59) return 'Drizzle'; if (c <= 69) return 'Rain';
+                if (c <= 79) return 'Snow'; if (c <= 82) return 'Rain showers';
+                if (c <= 86) return 'Snow showers'; if (c <= 99) return 'Thunderstorm';
+                return 'Unknown';
+            }
+            function wmoIcon(c) {
+                if (c === 0) return 'ti-sun'; if (c <= 2) return 'ti-cloud-sun';
+                if (c === 3) return 'ti-cloud'; if (c <= 49) return 'ti-cloud-fog';
+                if (c <= 69) return 'ti-cloud-rain'; if (c <= 79) return 'ti-snowflake';
+                if (c <= 82) return 'ti-cloud-rain'; if (c <= 86) return 'ti-snowflake';
+                if (c <= 99) return 'ti-cloud-storm'; return 'ti-cloud';
+            }
+            function beaufort(k) {
+                if (k < 2) return 'Calm'; if (k < 12) return 'Light breeze';
+                if (k < 20) return 'Gentle breeze'; if (k < 29) return 'Moderate breeze';
+                if (k < 39) return 'Fresh breeze'; if (k < 50) return 'Strong breeze';
+                if (k < 62) return 'Near gale'; return 'Gale+';
+            }
+            function windDir(deg) {
+                const d = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+                return d[Math.round(deg / 22.5) % 16];
+            }
+            function surfRating(wh, period, windSpd, windDeg) {
+                let s = 0;
+                if (wh >= 0.5 && wh <= 2.0) s += 2; else if (wh > 2.0 && wh <= 3.0) s += 1;
+                if (period >= 8 && period <= 14) s += 2; else if (period > 6) s += 1;
+                const wd = windDir(windDeg);
+                if (['W', 'WSW', 'SW', 'NW', 'WNW'].includes(wd)) s += 2;
+                else if (['N', 'NNW', 'NNE'].includes(wd)) s += 1;
+                if (windSpd < 15) s += 1;
+                return Math.min(5, s);
+            }
+            function ratingLabel(r) {
+                if (r >= 5) return ['good', 'Epic']; if (r >= 3) return ['good', 'Good'];
+                if (r >= 2) return ['fair', 'Fair']; return ['poor', 'Poor'];
+            }
+            function stars(r) {
+                let h = '';
+                for (let i = 1; i <= 5; i++) h += `<div class="pw-star ${i <= r ? 'pw-star-on' : 'pw-star-off'}"></div>`;
+                return `<div class="pw-stars">${h}</div>`;
+            }
+            function dayName(dateStr, i) {
+                if (i === 0) return 'Today'; if (i === 1) return 'Tomorrow';
+                return new Date(dateStr).toLocaleDateString('en-NZ', { weekday: 'short' });
+            }
+            function barWidth(hi, lo, absMin, absMax) {
+                return Math.round(((hi - absMin) / (absMax - absMin || 1)) * 100);
+            }
+            async function load() {
+                root.innerHTML = `<div class="pw-loading"><i class="ti ti-loader" style="font-size:24px;"></i><br>Loading conditions…</div>`;
+                try {
+                    const [wx, marine] = await Promise.all([
+                        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,relative_humidity_2m&daily=temperature_2m_max,temperature_2m_min,weather_code,precipitation_sum&timezone=Pacific%2FAuckland&forecast_days=5`).then(r => r.json()),
+                        fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${SURF_LAT}&longitude=${SURF_LON}&current=wave_height,wave_period,wave_direction,wind_wave_height&daily=wave_height_max,wave_period_max&timezone=Pacific%2FAuckland&forecast_days=5`).then(r => r.json())
+                    ]);
+                    const c = wx.current, d = wx.daily, m = marine.current, md = marine.daily;
+                    const wh = parseFloat(m.wave_height.toFixed(1));
+                    const wp = Math.round(m.wave_period);
+                    const ws = Math.round(c.wind_speed_10m);
+                    const wd = c.wind_direction_10m;
+                    const rating = surfRating(wh, wp, ws, wd);
+                    const [rClass, rLabel] = ratingLabel(rating);
+                    const absMin = Math.min(...d.temperature_2m_min);
+                    const absMax = Math.max(...d.temperature_2m_max);
+                    const wxForecast = d.time.slice(0, 5).map((date, i) => {
+                        const hi = Math.round(d.temperature_2m_max[i]);
+                        const lo = Math.round(d.temperature_2m_min[i]);
+                        const wc = d.weather_code[i];
+                        return `<div class="pw-frow">
+          <span class="pw-day">${dayName(date, i)}</span>
+          <span><i class="ti ${wmoIcon(wc)}" style="font-size:15px;color:#999;" aria-hidden="true"></i> <span style="font-size:12px;color:#999;">${wmoDesc(wc)}</span></span>
+          <div class="pw-bar-wrap"><div class="pw-bar" style="width:${barWidth(hi, lo, absMin, absMax)}%"></div></div>
+          <div class="pw-temp-range">${lo}° / ${hi}°</div>
+        </div>`;
+                    }).join('');
+                    const surfForecast = md.time.slice(0, 5).map((date, i) => {
+                        const swh = parseFloat(md.wave_height_max[i]).toFixed(1);
+                        const swp = Math.round(md.wave_period_max[i]);
+                        const sr = surfRating(parseFloat(swh), swp, ws, wd);
+                        const [src, srl] = ratingLabel(sr);
+                        return `<div class="pw-frow">
+          <span class="pw-day">${dayName(date, i)}</span>
+          <span style="font-size:12px;color:#999;">${swh}m / ${swp}s period</span>
+          <div></div>
+          <div style="text-align:right"><span class="pw-badge pw-badge-${src}" style="font-size:11px;padding:2px 7px;">${srl}</span></div>
+        </div>`;
+                    }).join('');
+                    root.innerHTML = `
+        <div class="pw-header">
+          <i class="ti ti-map-pin" aria-hidden="true"></i>
+          <div><p class="pw-loc-title">Papamoa Beach</p><p class="pw-loc-sub">Bay of Plenty, New Zealand</p></div>
+          <button class="pw-refresh" onclick="document.getElementById('papamoa-widget')._load()">
+            <i class="ti ti-refresh" style="font-size:13px;" aria-hidden="true"></i> Refresh
+          </button>
+        </div>
+        <div class="pw-grid">
+          <div class="pw-card">
+            <p class="pw-label">Temperature</p>
+            <p class="pw-value">${Math.round(c.temperature_2m)}°C</p>
+            <p class="pw-sub">Feels like ${Math.round(c.apparent_temperature)}°C · ${wmoDesc(c.weather_code)}</p>
+          </div>
+          <div class="pw-card">
+            <p class="pw-label">Wind</p>
+            <p class="pw-value" style="font-size:20px;">${ws} <span style="font-size:14px;font-weight:400;">km/h</span> ${windDir(wd)}</p>
+            <p class="pw-sub">${beaufort(ws)}</p>
+          </div>
+          <div class="pw-card">
+            <p class="pw-label">Surf conditions — now</p>
+            <div style="display:flex;align-items:center;gap:10px;margin:4px 0 2px;">
+              <p class="pw-value" style="font-size:22px;">${wh}m</p>
+              <span class="pw-badge pw-badge-${rClass}">${rLabel}</span>
+            </div>
+            ${stars(rating)}
+            <p class="pw-sub">Period ${wp}s · Wave dir ${windDir(m.wave_direction)}</p>
+          </div>
+          <div class="pw-card">
+            <p class="pw-label">Humidity</p>
+            <p class="pw-value">${Math.round(c.relative_humidity_2m)}<span style="font-size:14px;font-weight:400;">%</span></p>
+          </div>
+          <div class="pw-card pw-card-wide">
+            <p class="pw-section">5-day weather forecast</p>${wxForecast}
+          </div>
+          <div class="pw-card pw-card-wide">
+            <p class="pw-section">5-day surf forecast · Papamoa</p>${surfForecast}
+          </div>
+        </div>
+        <p class="pw-footer">Data: Open-Meteo &amp; Open-Meteo Marine · Updated ${new Date().toLocaleTimeString('en-NZ', { hour: '2-digit', minute: '2-digit' })}</p>`;
+                } catch (e) {
+                    root.innerHTML = `<div class="pw-error"><i class="ti ti-alert-circle"></i> Could not load conditions. <button class="pw-refresh" onclick="document.getElementById('papamoa-widget')._load()" style="margin-left:8px;">Retry</button></div>`;
+                }
+            }
+            root._load = load;
+            load();
+        })();
+    </script>
+</body>
+
+</html>
