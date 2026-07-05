@@ -8,39 +8,77 @@
     <style>
         .attractions-hero {
             width: 100%;
-            height: 40vh;
-            background-image: linear-gradient(rgba(12,3,51,0.55), rgba(12,3,51,0.55)), url('images/attractions-hero.jpg');
+            min-height: 42vh;
+            background-image: linear-gradient(rgba(12,3,51,0.55), rgba(12,3,51,0.55)), url('images/pap beach.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 70px 5%;
         }
         .attractions-hero h1 {
-            font-size: 72px;
+            font-size: clamp(42px, 8vw, 78px);
             color: #fff;
             font-weight: 600;
         }
         .attractions-hero p {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.84);
             font-size: 18px;
             margin-top: 10px;
         }
 
-        .attractions-section {
+        .page-intro {
             max-width: 1100px;
-            margin: 60px auto;
+            margin: 55px auto 20px;
             padding: 0 5%;
+            text-align: center;
+        }
+        .page-intro p {
+            max-width: 720px;
+            margin: 12px auto 0;
+            color: #777;
+            line-height: 1.7;
         }
 
+        .attractions-section {
+            max-width: 1100px;
+            margin: 56px auto;
+            padding: 0 5%;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 24px;
+            margin-bottom: 26px;
+        }
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #378ADD;
+            margin: 0 0 10px;
+        }
+        .section-title {
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 600;
+            color: #0c0333;
+            margin: 0;
+        }
+        .section-sub {
+            font-size: 15px;
+            color: #888;
+            max-width: 430px;
+            line-height: 1.6;
+        }
         .attractions-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 28px;
-            margin-top: 40px;
         }
-
         .attraction-card {
             border-radius: 16px;
             overflow: hidden;
@@ -52,28 +90,25 @@
             transform: translateY(-6px);
             box-shadow: 0 12px 32px rgba(0,0,0,0.14);
         }
-
-        .attraction-card .card-img {
+        .card-img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: #e0e8f0;
+            height: 190px;
+            background: linear-gradient(135deg, #dcecf8, #f7e3c7);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            color: #aaa;
+            font-size: 52px;
+            color: #0c0333;
         }
-        .attraction-card .card-img img {
+        .card-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
-        .attraction-card .card-body {
+        .card-body {
             padding: 1.25rem 1.5rem 1.5rem;
         }
-        .attraction-card .card-tag {
+        .card-tag {
             font-size: 11px;
             font-weight: 600;
             letter-spacing: 0.06em;
@@ -93,67 +128,24 @@
             line-height: 1.6;
             margin: 0 0 14px;
         }
-        .attraction-card .card-meta {
+        .card-meta {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             font-size: 13px;
             color: #999;
         }
-        .attraction-card .card-meta span {
+        .card-meta span {
             display: flex;
             align-items: center;
             gap: 4px;
         }
-        .attraction-card .card-meta i {
-            font-size: 15px;
-        }
+        .card-meta i { font-size: 15px; }
         .rating-stars {
             color: #EF9F27;
             font-size: 13px;
         }
-
-        .section-label {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #378ADD;
-            margin: 0 0 10px;
-        }
-        .section-title {
-            font-size: 36px;
-            font-weight: 600;
-            color: #0c0333;
-            margin: 0 0 12px;
-        }
-        .section-sub {
-            font-size: 16px;
-            color: #888;
-            max-width: 520px;
-        }
-
-        .map-section {
-            background: #f7f9fc;
-            padding: 60px 5%;
-        }
-        .map-section .inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .map-placeholder {
-            width: 100%;
-            height: 380px;
-            background: #dde6f0;
-            border-radius: 16px;
-            margin-top: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #aaa;
-            font-size: 16px;
-        }
-
         footer {
             background: #0c0333;
             color: rgba(255,255,255,0.6);
@@ -165,11 +157,10 @@
 
         @media (max-width: 900px) {
             .attractions-grid { grid-template-columns: repeat(2, 1fr); }
-            .attractions-hero h1 { font-size: 48px; }
+            .section-header { align-items: start; flex-direction: column; }
         }
         @media (max-width: 560px) {
             .attractions-grid { grid-template-columns: 1fr; }
-            .attractions-hero h1 { font-size: 36px; }
         }
     </style>
 </head>
@@ -190,104 +181,120 @@
     <div class="attractions-hero">
         <div>
             <h1>Attractions</h1>
-            <p>Discover the best of Pāpāmoa</p>
+            <p>Eat, shop, walk, swim and explore around Pāpāmoa</p>
         </div>
     </div>
 
-    <!-- Cards -->
-    <div class="attractions-section">
+    <section class="page-intro">
         <p class="section-label">Things to do</p>
-        <h2 class="section-title">Explore Pāpāmoa</h2>
-        <p class="section-sub">From golden beaches to ancient hilltop pā sites — there's something for everyone.</p>
+        <h2 class="section-title">Plan your perfect day</h2>
+        <p>This page groups local activities into easy sections so visitors can quickly find food, shopping, walks, water activities and family-friendly ideas.</p>
+    </section>
 
-        <div class="attractions-grid">
-
-            <!-- Papamoa Beach -->
-            <div class="attraction-card">
-                <div class="card-img"><img src="images/pap beach.jpg"></div>
-                <div class="card-body">
-                    <p class="card-tag">Beach</p>
-                    <h3>Pāpāmoa Beach</h3>
-                    <p>16km of golden sand stretching along the Bay of Plenty. Lifeguard-patrolled in summer, dog-friendly year round, with free parking, showers and toilets at the reserve.</p>
-                    <div class="card-meta">
-                        <span><i class="ti ti-map-pin"></i> Papamoa Beach Rd</span>
-                        <span><i class="ti ti-sun"></i> Free entry</span>
-                    </div>
-                </div>
+    <!-- Places to Eat -->
+    <section class="attractions-section">
+        <div class="section-header">
+            <div>
+                <p class="section-label">Food & Drink</p>
+                <h2 class="section-title">Places to Eat</h2>
             </div>
-
-            <!-- Hakanini Surf School -->
-            <div class="attraction-card">
-                <div class="card-img"><img src="images/hakanini.jpg"></div>
-                <div class="card-body">
-                    <p class="card-tag">Water Sports</p>
-                    <h3>Hakanini Surf School</h3>
-                    <p>Rated 5 stars by over 300 visitors. Group and private lessons for all ages, kids' holiday programmes, and standalone board hire. Right by the surf lifesaving club.</p>
-                    <div class="card-meta">
-                        <span class="rating-stars">★★★★★</span>
-                        <span><i class="ti ti-clock"></i> Mon–Sun 8am–5pm</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Papamoa Hills -->
-            <div class="attraction-card">
-                <div class="card-img"><img src="images/paphills.jpg"></div>
-                <div class="card-body">
-                    <p class="card-tag">Nature & Culture</p>
-                    <h3>Pāpāmoa Hills Regional Park</h3>
-                    <p>Walk through native forest to panoramic views 224m above sea level. Home to 10 Māori pā sites dating back to the 1500s. Open daily 6:30am–7pm.</p>
-                    <div class="card-meta">
-                        <span><i class="ti ti-clock"></i> ~45 min walk</span>
-                        <span><i class="ti ti-sun"></i> Free entry</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kaiate Falls -->
-            <div class="attraction-card">
-                <div class="card-img"><img src="images/kaiate.webp"></div>
-                <div class="card-body">
-                    <p class="card-tag">Nature</p>
-                    <h3>Kaiate Falls</h3>
-                    <p>A stunning multi-step waterfall hidden in native bush, just 15 minutes from Pāpāmoa. Take the 1-hour loop walk through lush forest to the upper and lower falls.</p>
-                    <div class="card-meta">
-                        <span><i class="ti ti-car"></i> 15 min drive</span>
-                        <span><i class="ti ti-sun"></i> Free entry</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blokarting -->
-            <div class="attraction-card">
-                <div class="card-img"><img src="images/blokart.webp"></div>
-                <div class="card-body">
-                    <p class="card-tag">Adventure</p>
-                    <h3>Blokarting</h3>
-                    <p>Jump in a wind-powered go-kart and tear around the track — no experience needed. Also try drift karting, a three-wheeled electric kart built for drifting. Unique to Pāpāmoa.</p>
-                    <div class="card-meta">
-                        <span><i class="ti ti-map-pin"></i> 176 Parton Rd</span>
-                        <span><i class="ti ti-users"></i> All ages</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Little Big Markets -->
-            <div class="attraction-card">
-                <div class="card-img"><img src="images/lbm.png"></div>
-                <div class="card-body">
-                    <p class="card-tag">Markets</p>
-                    <h3>Little Big Markets</h3>
-                    <p>The best community market in the Bay — local craft stalls, live music and gourmet street food every Saturday morning at Coronation Park, Mount Maunganui.</p>
-                    <div class="card-meta">
-                        <span class="rating-stars">★★★★★</span>
-                        <span><i class="ti ti-clock"></i> Sat 9am–2pm</span>
-                    </div>
-                </div>
-            </div>
-
+            <p class="section-sub">Casual cafés, brunch spots and relaxed local dining options close to the beach and town centre.</p>
         </div>
-    </div>
+        <div class="attractions-grid">
+            <article class="attraction-card">
+                <div class="card-img">🍽️</div>
+                <div class="card-body"><p class="card-tag">Restaurant & Bar</p><h3>Pap House</h3><p>A relaxed local restaurant and bar for casual meals, drinks and group catch-ups.</p><div class="card-meta"><span><i class="ti ti-map-pin"></i> Pāpāmoa</span><span><i class="ti ti-users"></i> Groups</span></div></div>
+            </article>
+            <article class="attraction-card">
+                <div class="card-img">☕</div>
+                <div class="card-body"><p class="card-tag">Cafe</p><h3>Pearl Kitchen</h3><p>A popular brunch and coffee spot with a relaxed local feel and fresh daytime food.</p><div class="card-meta"><span><i class="ti ti-coffee"></i> Brunch</span><span><i class="ti ti-sun"></i> Daytime</span></div></div>
+            </article>
+            <article class="attraction-card">
+                <div class="card-img">🥐</div>
+                <div class="card-body"><p class="card-tag">Cafe</p><h3>Henry & Ted</h3><p>A beachside café option for coffee, breakfast, lunch and a slower start to the day.</p><div class="card-meta"><span><i class="ti ti-coffee"></i> Coffee</span><span><i class="ti ti-waves"></i> Near beach</span></div></div>
+            </article>
+            <article class="attraction-card">
+                <div class="card-img">🍔</div>
+                <div class="card-body"><p class="card-tag">Casual Dining</p><h3>The Goodhome</h3><p>A casual spot for burgers, shared plates, drinks and easy family or group meals.</p><div class="card-meta"><span><i class="ti ti-users"></i> Social</span><span><i class="ti ti-glass"></i> Drinks</span></div></div>
+            </article>
+            <article class="attraction-card">
+                <div class="card-img">🌮</div>
+                <div class="card-body"><p class="card-tag">Markets & Food Trucks</p><h3>Local Markets</h3><p>Look out for market days and food truck events around Pāpāmoa and Mount Maunganui.</p><div class="card-meta"><span><i class="ti ti-calendar"></i> Seasonal</span><span><i class="ti ti-star"></i> Local food</span></div></div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Shopping -->
+    <section class="attractions-section">
+        <div class="section-header">
+            <div>
+                <p class="section-label">Shopping</p>
+                <h2 class="section-title">Malls & Shopping</h2>
+            </div>
+            <p class="section-sub">Handy shopping options for groceries, fashion, wet-weather activities and visitor essentials.</p>
+        </div>
+        <div class="attractions-grid">
+            <article class="attraction-card"><div class="card-img">🛍️</div><div class="card-body"><p class="card-tag">Shopping Centre</p><h3>Pāpāmoa Plaza</h3><p>A central shopping stop with everyday stores, food options and useful visitor essentials.</p><div class="card-meta"><span><i class="ti ti-map-pin"></i> Pāpāmoa</span><span><i class="ti ti-shopping-bag"></i> Local</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">👕</div><div class="card-body"><p class="card-tag">Fashion</p><h3>Fashion Island</h3><p>A Pāpāmoa shopping precinct for clothing, outlets, casual dining and lifestyle stores.</p><div class="card-meta"><span><i class="ti ti-map-pin"></i> Gravatt Rd</span><span><i class="ti ti-shirt"></i> Fashion</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">🏬</div><div class="card-body"><p class="card-tag">Mall</p><h3>Bayfair</h3><p>A large undercover shopping centre with retail, food, movies and wet-weather options nearby.</p><div class="card-meta"><span><i class="ti ti-car"></i> Short drive</span><span><i class="ti ti-building-store"></i> 140+ stores</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">🛒</div><div class="card-body"><p class="card-tag">Retail</p><h3>The Crossing Tauriko</h3><p>A bigger retail destination for shopping, food, entertainment and larger store options.</p><div class="card-meta"><span><i class="ti ti-car"></i> Tauranga</span><span><i class="ti ti-users"></i> Family stop</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">🌊</div><div class="card-body"><p class="card-tag">Nearby Shopping</p><h3>Mount Mainstreet</h3><p>A walkable shopping and dining area near Mount Maunganui beach with boutiques and cafés.</p><div class="card-meta"><span><i class="ti ti-walk"></i> Walkable</span><span><i class="ti ti-coffee"></i> Cafés</span></div></div></article>
+        </div>
+    </section>
+
+    <!-- Walks and Nature -->
+    <section class="attractions-section">
+        <div class="section-header">
+            <div>
+                <p class="section-label">Nature</p>
+                <h2 class="section-title">Walks & Nature</h2>
+            </div>
+            <p class="section-sub">Beach walks, bush tracks, hilltop views and nature stops around the wider Bay of Plenty.</p>
+        </div>
+        <div class="attractions-grid">
+            <article class="attraction-card"><div class="card-img"><img src="images/pap beach.jpg" alt="Pāpāmoa Beach"></div><div class="card-body"><p class="card-tag">Beach Walk</p><h3>Pāpāmoa Beach</h3><p>Long sandy beach walks, sunrise views, swimming spots and plenty of space to relax.</p><div class="card-meta"><span><i class="ti ti-waves"></i> Beach</span><span><i class="ti ti-sun"></i> Free</span></div></div></article>
+            <article class="attraction-card"><div class="card-img"><img src="images/paphills.jpg" alt="Pāpāmoa Hills"></div><div class="card-body"><p class="card-tag">Hill Walk</p><h3>Pāpāmoa Hills</h3><p>A rewarding hill walk with coastal views and important cultural history across the landscape.</p><div class="card-meta"><span><i class="ti ti-walk"></i> Walking track</span><span><i class="ti ti-camera"></i> Views</span></div></div></article>
+            <article class="attraction-card"><div class="card-img"><img src="images/kaiate.webp" alt="Kaiate Falls"></div><div class="card-body"><p class="card-tag">Waterfall</p><h3>Kaiate Falls</h3><p>A native bush walk leading to waterfalls, swimming holes and peaceful forest scenery.</p><div class="card-meta"><span><i class="ti ti-car"></i> Short drive</span><span><i class="ti ti-leaf"></i> Bush walk</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">⛰️</div><div class="card-body"><p class="card-tag">Nearby Walk</p><h3>Mount Maunganui Base Track</h3><p>A scenic coastal loop around Mauao with ocean views, rocky shoreline and cafés nearby.</p><div class="card-meta"><span><i class="ti ti-walk"></i> Loop walk</span><span><i class="ti ti-camera"></i> Scenic</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">🌿</div><div class="card-body"><p class="card-tag">Local Park</p><h3>Gordon Spratt Reserve</h3><p>A spacious local reserve for casual walks, sports, playground time and family downtime.</p><div class="card-meta"><span><i class="ti ti-users"></i> Family</span><span><i class="ti ti-ball-football"></i> Sports</span></div></div></article>
+        </div>
+    </section>
+
+    <!-- Water Activities -->
+    <section class="attractions-section">
+        <div class="section-header">
+            <div>
+                <p class="section-label">Water</p>
+                <h2 class="section-title">Water Attractions</h2>
+            </div>
+            <p class="section-sub">Surf, swim, paddle, soak or cool off with these beach and water-based activities.</p>
+        </div>
+        <div class="attractions-grid">
+            <article class="attraction-card"><div class="card-img"><img src="images/hakanini.jpg" alt="Surf school"></div><div class="card-body"><p class="card-tag">Surf Lessons</p><h3>Hakanini Surf School</h3><p>Learn to surf or hire gear with lessons for beginners, kids, groups and visitors.</p><div class="card-meta"><span class="rating-stars">★★★★★</span><span><i class="ti ti-surfing"></i> Surf</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">🏊</div><div class="card-body"><p class="card-tag">Pool Complex</p><h3>Baywave</h3><p>An indoor aquatic centre with pools, hydroslides and wave-pool fun for wet-weather days.</p><div class="card-meta"><span><i class="ti ti-car"></i> Mount area</span><span><i class="ti ti-users"></i> Families</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">♨️</div><div class="card-body"><p class="card-tag">Hot Pools</p><h3>Mount Hot Pools</h3><p>A relaxing nearby option for warm soaking pools after a walk, surf or beach day.</p><div class="card-meta"><span><i class="ti ti-mountain"></i> Mount</span><span><i class="ti ti-heart"></i> Relax</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">🛶</div><div class="card-body"><p class="card-tag">Adventure Park</p><h3>Waimarino</h3><p>Kayaks, paddleboards and water activities for an active day out near Tauranga.</p><div class="card-meta"><span><i class="ti ti-paddle"></i> Kayak/SUP</span><span><i class="ti ti-users"></i> Family</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">🏄</div><div class="card-body"><p class="card-tag">Beach Activity</p><h3>Swimming & Bodyboarding</h3><p>Simple classic beach fun. Check conditions, swim between flags and respect the surf.</p><div class="card-meta"><span><i class="ti ti-waves"></i> Ocean</span><span><i class="ti ti-shield-check"></i> Safety first</span></div></div></article>
+        </div>
+    </section>
+
+    <!-- Family Activities -->
+    <section class="attractions-section">
+        <div class="section-header">
+            <div>
+                <p class="section-label">Family</p>
+                <h2 class="section-title">Family Activities</h2>
+            </div>
+            <p class="section-sub">Easy activities for kids, teens and family groups when you want something more than the beach.</p>
+        </div>
+        <div class="attractions-grid">
+            <article class="attraction-card"><div class="card-img"><img src="images/blokart.webp" alt="Blokarting"></div><div class="card-body"><p class="card-tag">Adventure</p><h3>Blokart Recreation Park</h3><p>Wind-powered karts, drift karts and active outdoor fun for older kids and adults.</p><div class="card-meta"><span><i class="ti ti-map-pin"></i> Parton Rd</span><span><i class="ti ti-wind"></i> Action</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">🎬</div><div class="card-body"><p class="card-tag">Indoor</p><h3>Cinema Day</h3><p>A simple wet-weather option around Bayfair or Tauranga when the beach weather turns.</p><div class="card-meta"><span><i class="ti ti-cloud-rain"></i> Rainy day</span><span><i class="ti ti-popcorn"></i> Kids</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">🧗</div><div class="card-body"><p class="card-tag">Indoor Activity</p><h3>Rock Climbing</h3><p>A good energy-burning activity for families wanting something active away from the sand.</p><div class="card-meta"><span><i class="ti ti-mountain"></i> Active</span><span><i class="ti ti-users"></i> Groups</span></div></div></article>
+            <article class="attraction-card"><div class="card-img">⛳</div><div class="card-body"><p class="card-tag">Mini Golf</p><h3>Mini Golf</h3><p>Light, easy competition for families, couples and groups before or after dinner.</p><div class="card-meta"><span><i class="ti ti-ball-golf"></i> Casual</span><span><i class="ti ti-mood-smile"></i> All ages</span></div></div></article>
+            <article class="attraction-card"><div class="card-img"><img src="images/lbm.png" alt="Little Big Markets"></div><div class="card-body"><p class="card-tag">Markets</p><h3>Little Big Markets</h3><p>Local stalls, music, food and community atmosphere around Mount Maunganui market days.</p><div class="card-meta"><span><i class="ti ti-calendar"></i> Market days</span><span><i class="ti ti-star"></i> Local</span></div></div></article>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
