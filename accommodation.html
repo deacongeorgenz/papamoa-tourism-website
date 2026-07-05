@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation - Papamoa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <style>
+        .accommodation-hero {
+            width: 100%;
+            height: 40vh;
+            background-image: linear-gradient(rgba(12,3,51,0.55), rgba(12,3,51,0.55)), url('images/pap beach.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .accommodation-hero h1 {
+            font-size: 72px;
+            color: #fff;
+            font-weight: 600;
+        }
+        .accommodation-hero p {
+            color: rgba(255,255,255,0.8);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .accommodation-section {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 5%;
+        }
+        .accommodation-category {
+            margin-top: 54px;
+        }
+        .category-heading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .category-heading i {
+            color: #378ADD;
+            font-size: 28px;
+        }
+        .category-heading h3 {
+            font-size: 28px;
+            color: #0c0333;
+            margin: 0;
+        }
+        .category-note {
+            color: #888;
+            font-size: 15px;
+            max-width: 680px;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        .accommodation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .stay-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            background: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .stay-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+        }
+        .stay-img {
+            height: 160px;
+            background: linear-gradient(135deg, #dfeef8, #f3f8fb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #378ADD;
+            font-size: 48px;
+        }
+        .stay-body {
+            padding: 1.25rem 1.5rem 1.5rem;
+        }
+        .stay-tag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #378ADD;
+            margin: 0 0 6px;
+        }
+        .stay-card h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0c0333;
+            margin: 0 0 8px;
+        }
+        .stay-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin: 0 0 14px;
+        }
+        .stay-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            font-size: 13px;
+            color: #999;
+        }
+        .stay-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .stay-link {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 13px;
+            color: #378ADD;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #378ADD;
+            margin: 0 0 10px;
+        }
+        .section-title {
+            font-size: 36px;
+            font-weight: 600;
+            color: #0c0333;
+            margin: 0 0 12px;
+        }
+        .section-sub {
+            font-size: 16px;
+            color: #888;
+            max-width: 620px;
+            line-height: 1.6;
+        }
+        .disclaimer {
+            background: #f7f9fc;
+            border-left: 4px solid #378ADD;
+            padding: 18px 22px;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 46px;
+            border-radius: 12px;
+        }
+        footer {
+            background: #0c0333;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 28px;
+            font-size: 14px;
+        }
+        footer a { color: #fff; text-decoration: none; }
+
+        @media (max-width: 900px) {
+            .accommodation-grid { grid-template-columns: repeat(2, 1fr); }
+            .accommodation-hero h1 { font-size: 48px; }
+        }
+        @media (max-width: 560px) {
+            .accommodation-grid { grid-template-columns: 1fr; }
+            .accommodation-hero h1 { font-size: 36px; }
+            .category-heading h3 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav style="background: #0c0333; position: relative; padding: 20px 8%;">
+        <a href="index.html"><img src="images/logo.png" class="logo" style="width:120px;"></a>
+        <ul style="display:inline-flex; list-style:none; margin-left: auto; gap: 0;">
+            <li style="display:inline-block; margin-left:40px;"><a href="index.html" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">HOME</a></li>
+            <li style="display:inline-block; margin-left:40px;"><a href="attractions.html" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">ATTRACTIONS</a></li>
+            <li style="display:inline-block; margin-left:40px;"><a href="accommodation.html" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">ACCOMMODATION</a></li>
+            <li style="display:inline-block; margin-left:40px;"><a href="#" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <div class="accommodation-hero">
+        <div>
+            <h1>Accommodation</h1>
+            <p>Find somewhere comfortable to stay near Pāpāmoa Beach</p>
+        </div>
+    </div>
+
+    <main class="accommodation-section">
+        <p class="section-label">Places to stay</p>
+        <h2 class="section-title">Stay your way in Pāpāmoa</h2>
+        <p class="section-sub">Choose from beachfront holiday parks, self-contained homes, quiet studios, motel-style stays and nearby Tauranga options for different budgets and travel styles.</p>
+
+        <section class="accommodation-category">
+            <div class="category-heading"><i class="ti ti-users-group"></i><h3>Family friendly</h3></div>
+            <p class="category-note">Good options for families needing space, beach access, parking, kitchens, playgrounds, pools or room for the kids to spread out.</p>
+            <div class="accommodation-grid">
+                <article class="stay-card">
+                    <div class="stay-img"><i class="ti ti-beach"></i></div>
+                    <div class="stay-body"><p class="stay-tag">Holiday park</p><h4>Tasman Holiday Parks – Papamoa Beach</h4><p>Beachfront holiday park with cabins, villas, powered sites, pools, playground areas and easy beach access.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$</span><span><i class="ti ti-map-pin"></i> Beachfront</span><span><i class="ti ti-users"></i> Families</span></div><a class="stay-link" href="https://tasmanholidayparks.com/nz/papamoa-beach/" target="_blank">Visit website</a></div>
+                </article>
+                <article class="stay-card">
+                    <div class="stay-img"><i class="ti ti-home"></i></div>
+                    <div class="stay-body"><p class="stay-tag">Holiday home</p><h4>Paradise Beach Accommodation</h4><p>Luxury Papamoa beach stays with family-sized houses and private spaces close to the coast.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$$</span><span><i class="ti ti-home"></i> Entire home</span><span><i class="ti ti-users"></i> Groups</span></div><a class="stay-link" href="https://www.paradisebeach.co.nz/" target="_blank">Visit website</a></div>
+                </article>
+                <article class="stay-card">
+                    <div class="stay-img"><i class="ti ti-building-cottage"></i></div>
+                    <div class="stay-body"><p class="stay-tag">Holiday rentals</p><h4>Bachcare Papamoa Holiday Homes</h4><p>A range of pre-inspected houses and baches, useful for families wanting bedrooms, laundry and self-catering.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$–$$$</span><span><i class="ti ti-tools-kitchen-2"></i> Kitchen</span><span><i class="ti ti-car"></i> Parking</span></div><a class="stay-link" href="https://www.bachcare.co.nz/holiday-homes-accommodation/tauranga/papamoa" target="_blank">Visit website</a></div>
+                </article>
+                <article class="stay-card">
+                    <div class="stay-img"><i class="ti ti-bed"></i></div>
+                    <div class="stay-body"><p class="stay-tag">Motel / lodge</p><h4>Hunter Lodge</h4><p>A clean, home-style Papamoa stay that suits families looking for a quieter base away from the busiest beachfront areas.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$</span><span><i class="ti ti-home"></i> Homely</span><span><i class="ti ti-bed"></i> Multi-room</span></div><a class="stay-link" href="https://www.booking.com/city/nz/papamoa.html" target="_blank">Search listing</a></div>
+                </article>
+                <article class="stay-card">
+                    <div class="stay-img"><i class="ti ti-tent"></i></div>
+                    <div class="stay-body"><p class="stay-tag">Camp style</p><h4>Pacific Park Christian Holiday Camp</h4><p>A practical group and family-style camp option near Pāpāmoa, useful for budget-conscious stays and larger groups.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $–$$</span><span><i class="ti ti-users-group"></i> Groups</span><span><i class="ti ti-leaf"></i> Outdoors</span></div><a class="stay-link" href="https://www.google.com/search?q=Pacific+Park+Christian+Holiday+Camp+Papamoa" target="_blank">Search online</a></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="accommodation-category">
+            <div class="category-heading"><i class="ti ti-heart"></i><h3>Couples</h3></div>
+            <p class="category-note">Comfortable options for weekend escapes, beach walks, quieter stays and self-contained accommodation.</p>
+            <div class="accommodation-grid">
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-beach"></i></div><div class="stay-body"><p class="stay-tag">Beachfront villas</p><h4>Tasman Holiday Parks – Papamoa Beach</h4><p>Beachfront villas and spa-style options make this a good choice for couples who want to stay close to the sand.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$–$$$</span><span><i class="ti ti-map-pin"></i> Beachfront</span><span><i class="ti ti-heart"></i> Couples</span></div><a class="stay-link" href="https://tasmanholidayparks.com/nz/papamoa-beach/" target="_blank">Visit website</a></div></article>
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-home-heart"></i></div><div class="stay-body"><p class="stay-tag">Romantic retreat</p><h4>Paradise Beach – Beach Barns</h4><p>Private, well-appointed beach accommodation with options suitable for a more special couples getaway.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$$</span><span><i class="ti ti-sparkles"></i> Luxury</span><span><i class="ti ti-home"></i> Private</span></div><a class="stay-link" href="https://www.paradisebeach.co.nz/" target="_blank">Visit website</a></div></article>
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-building"></i></div><div class="stay-body"><p class="stay-tag">Apartment</p><h4>Papamoa self-contained apartments</h4><p>Modern apartment-style stays are useful for couples wanting privacy, cooking facilities and easy access to shops and beach walks.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$</span><span><i class="ti ti-tools-kitchen-2"></i> Kitchen</span><span><i class="ti ti-waves"></i> Beach nearby</span></div><a class="stay-link" href="https://www.papamoa.info/accommodation" target="_blank">Browse options</a></div></article>
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-hotel-service"></i></div><div class="stay-body"><p class="stay-tag">Nearby hotel</p><h4>Trinity Wharf Tauranga</h4><p>A waterfront hotel option in Tauranga for couples who want restaurant access, harbour views and a more hotel-style stay.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$$</span><span><i class="ti ti-car"></i> Tauranga</span><span><i class="ti ti-glass-full"></i> Dining</span></div><a class="stay-link" href="https://www.trinitywharf.co.nz/" target="_blank">Visit website</a></div></article>
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-building-skyscraper"></i></div><div class="stay-body"><p class="stay-tag">Nearby serviced stay</p><h4>Quest Mount Maunganui</h4><p>A serviced apartment option near Mount Maunganui, useful for couples who want restaurants, shops and beach activities close by.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$–$$$</span><span><i class="ti ti-car"></i> Mount</span><span><i class="ti ti-bed"></i> Serviced</span></div><a class="stay-link" href="https://www.questapartments.co.nz/properties/north-island/mount-maunganui/quest-mount-maunganui" target="_blank">Visit website</a></div></article>
+            </div>
+        </section>
+
+        <section class="accommodation-category">
+            <div class="category-heading"><i class="ti ti-backpack"></i><h3>Solo travellers</h3></div>
+            <p class="category-note">Flexible choices for people travelling alone, including cabins, studios, budget stays and nearby backpacker-style options.</p>
+            <div class="accommodation-grid">
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-tent"></i></div><div class="stay-body"><p class="stay-tag">Cabin or site</p><h4>Tasman Holiday Parks – Papamoa Beach</h4><p>Solo travellers can choose a cabin, powered site or camping option while staying right near the beach.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $–$$</span><span><i class="ti ti-beach"></i> Beachfront</span><span><i class="ti ti-user"></i> Flexible</span></div><a class="stay-link" href="https://tasmanholidayparks.com/nz/papamoa-beach/" target="_blank">Visit website</a></div></article>
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-bed"></i></div><div class="stay-body"><p class="stay-tag">Studio / room</p><h4>Papamoa studio stays</h4><p>Small self-contained studios are a simple choice for solo visitors who want privacy and basic cooking facilities.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$</span><span><i class="ti ti-user"></i> Solo</span><span><i class="ti ti-tools-kitchen-2"></i> Self-catering</span></div><a class="stay-link" href="https://www.booking.com/city/nz/papamoa.html" target="_blank">Search options</a></div></article>
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-building-cottage"></i></div><div class="stay-body"><p class="stay-tag">Guesthouse</p><h4>Seagulls Guesthouse</h4><p>A nearby Mount Maunganui guesthouse-style option for budget-minded solo travellers wanting easy access to the wider coast.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $–$$</span><span><i class="ti ti-car"></i> Mount</span><span><i class="ti ti-users"></i> Social</span></div><a class="stay-link" href="https://www.google.com/search?q=Seagulls+Guesthouse+Mount+Maunganui" target="_blank">Search online</a></div></article>
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-motorbike"></i></div><div class="stay-body"><p class="stay-tag">Budget lodge</p><h4>Hugo &amp; Carters Backpackers</h4><p>A nearby Tauranga backpacker-style option that can suit solo travellers looking for a lower-cost stay.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $</span><span><i class="ti ti-car"></i> Tauranga</span><span><i class="ti ti-backpack"></i> Budget</span></div><a class="stay-link" href="https://www.google.com/search?q=Hugo+and+Carters+Backpackers+Tauranga" target="_blank">Search online</a></div></article>
+                <article class="stay-card"><div class="stay-img"><i class="ti ti-home-search"></i></div><div class="stay-body"><p class="stay-tag">Holiday rental</p><h4>Bachcare small stays</h4><p>Useful for solo travellers wanting a quiet base, especially outside peak season when smaller homes may be more affordable.</p><div class="stay-meta"><span><i class="ti ti-currency-dollar"></i> $$</span><span><i class="ti ti-home"></i> Private</span><span><i class="ti ti-calendar"></i> Seasonal</span></div><a class="stay-link" href="https://www.bachcare.co.nz/holiday-homes-accommodation/tauranga/papamoa" target="_blank">Browse options</a></div></article>
+            </div>
+        </section>
+
+        <div class="disclaimer">
+            Accommodation details and prices can change. Visitors should check the official provider website before booking. This page is designed as a local tourism guide, not a booking engine.
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Pāpāmoa. Built with ❤️ in the Bay of Plenty.</p>
+    </footer>
+
+</body>
+</html>
