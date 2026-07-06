@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Papamoa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <style>
+        .contact-hero {
+            width: 100%;
+            min-height: 42vh;
+            background-image: linear-gradient(rgba(12,3,51,0.58), rgba(12,3,51,0.58)), url('images/pap beach.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 70px 5%;
+        }
+        .contact-hero h1 {
+            font-size: clamp(42px, 8vw, 78px);
+            color: #fff;
+            font-weight: 600;
+        }
+        .contact-hero p {
+            color: rgba(255,255,255,0.84);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .contact-wrapper {
+            max-width: 1100px;
+            margin: 56px auto;
+            padding: 0 5%;
+        }
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #378ADD;
+            margin: 0 0 10px;
+        }
+        .section-title {
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 600;
+            color: #0c0333;
+            margin: 0;
+        }
+        .intro-text {
+            max-width: 720px;
+            color: #777;
+            line-height: 1.7;
+            margin-top: 12px;
+        }
+        .contact-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 34px;
+        }
+        .contact-card, .contact-form-card, .map-card, .social-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .contact-card {
+            padding: 1.6rem;
+        }
+        .contact-card i {
+            font-size: 32px;
+            color: #378ADD;
+            margin-bottom: 14px;
+        }
+        .contact-card h3 {
+            color: #0c0333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .contact-card p, .contact-card a {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .contact-main-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            margin-top: 48px;
+            align-items: start;
+        }
+        .contact-form-card {
+            padding: 2rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #0c0333;
+            margin-bottom: 8px;
+        }
+        input, textarea, select {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 14px;
+            margin-bottom: 18px;
+            outline: none;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #378ADD;
+            box-shadow: 0 0 0 3px rgba(55,138,221,0.12);
+        }
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0c0333;
+            color: #fff;
+            border: 0;
+            border-radius: 50px;
+            padding: 13px 26px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .submit-btn:hover {
+            background: #378ADD;
+        }
+        .map-card {
+            overflow: hidden;
+        }
+        .map-card iframe {
+            width: 100%;
+            height: 360px;
+            border: 0;
+            display: block;
+        }
+        .map-card-content {
+            padding: 1.4rem 1.6rem;
+        }
+        .map-card-content h3 {
+            color: #0c0333;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+        .map-card-content p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        .help-section {
+            margin-top: 56px;
+        }
+        .info-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 24px;
+        }
+        .info-item {
+            background: #f7f9fc;
+            border-radius: 14px;
+            padding: 1.3rem;
+        }
+        .info-item h4 {
+            color: #0c0333;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+        .info-item p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 24px;
+        }
+        .social-card {
+            padding: 1.4rem;
+            text-decoration: none;
+            color: #0c0333;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .social-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+        }
+        .social-card i {
+            color: #378ADD;
+            font-size: 30px;
+        }
+        footer {
+            background: #0c0333;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 28px;
+            font-size: 14px;
+        }
+        footer a { color: #fff; text-decoration: none; }
+        @media (max-width: 900px) {
+            .contact-card-grid, .info-list, .social-grid { grid-template-columns: 1fr; }
+            .contact-main-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px) {
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav style="background: #0c0333; position: relative; padding: 20px 8%;">
+        <a href="index.html"><img src="images/logo.png" class="logo" style="width:120px;"></a>
+        <ul style="display:inline-flex; list-style:none; margin-left: auto; gap: 0;">
+            <li style="display:inline-block; margin-left:40px;"><a href="index.html" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">HOME</a></li>
+            <li style="display:inline-block; margin-left:40px;"><a href="attractions.html" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">ATTRACTIONS</a></li>
+            <li style="display:inline-block; margin-left:40px;"><a href="accommodation.html" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">ACCOMMODATION</a></li>
+            <li style="display:inline-block; margin-left:40px;"><a href="contact.html" style="text-decoration:none;color:#fff;font-size:17px;position:relative;" class="nav-link">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <div class="contact-hero">
+        <div>
+            <h1>Contact</h1>
+            <p>Questions, local tips, and trip planning help for Pāpāmoa visitors</p>
+        </div>
+    </div>
+
+    <main class="contact-wrapper">
+        <p class="section-label">Get in touch</p>
+        <h2 class="section-title">Plan your visit to Pāpāmoa</h2>
+        <p class="intro-text">This contact page is a front-end learning feature. The form is designed to practise layout, labels, inputs and responsive form styling.</p>
+
+        <section class="contact-card-grid" aria-label="Contact information">
+            <article class="contact-card">
+                <i class="ti ti-map-pin"></i>
+                <h3>Visitor Area</h3>
+                <p>Pāpāmoa Beach<br>Bay of Plenty<br>New Zealand</p>
+            </article>
+            <article class="contact-card">
+                <i class="ti ti-mail"></i>
+                <h3>Email</h3>
+                <p><a href="mailto:info@example.com">info@example.com</a></p>
+                <p>Replace this with a real project email later.</p>
+            </article>
+            <article class="contact-card">
+                <i class="ti ti-clock"></i>
+                <h3>Visitor Info Hours</h3>
+                <p>Monday - Friday: 9am - 5pm<br>Saturday: 10am - 3pm<br>Sunday: Closed</p>
+            </article>
+        </section>
+
+        <section class="contact-main-grid">
+            <article class="contact-form-card">
+                <p class="section-label">Contact Form</p>
+                <h2 class="section-title">Send a message</h2>
+                <form>
+                    <div class="form-row">
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com">
+                        </div>
+                    </div>
+                    <label for="topic">Topic</label>
+                    <select id="topic" name="topic">
+                        <option>General enquiry</option>
+                        <option>Accommodation</option>
+                        <option>Attractions</option>
+                        <option>Food and shopping</option>
+                        <option>Website feedback</option>
+                    </select>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="What would you like to know?"></textarea>
+                    <button type="submit" class="submit-btn"><i class="ti ti-send"></i> Send message</button>
+                </form>
+            </article>
+
+            <aside class="map-card">
+                <iframe title="Map of Papamoa Beach" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Papamoa%20Beach%2C%20Bay%20of%20Plenty%2C%20New%20Zealand&output=embed"></iframe>
+                <div class="map-card-content">
+                    <h3>Pāpāmoa Beach</h3>
+                    <p>Use this map section as a placeholder for a real visitor information map, route guide, or local highlights map.</p>
+                </div>
+            </aside>
+        </section>
+
+        <section class="help-section">
+            <p class="section-label">Useful Information</p>
+            <h2 class="section-title">Quick visitor help</h2>
+            <div class="info-list">
+                <article class="info-item">
+                    <h4>Emergency</h4>
+                    <p>For police, fire or ambulance emergencies in New Zealand, call <strong>111</strong>.</p>
+                </article>
+                <article class="info-item">
+                    <h4>Beach Safety</h4>
+                    <p>Swim between the flags when lifeguards are on duty and check surf conditions before entering the water.</p>
+                </article>
+                <article class="info-item">
+                    <h4>Transport</h4>
+                    <p>Pāpāmoa is accessible by car, local bus routes, cycling paths and nearby Tauranga connections.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="help-section">
+            <p class="section-label">Social</p>
+            <h2 class="section-title">Follow local updates</h2>
+            <div class="social-grid">
+                <a href="#" class="social-card"><i class="ti ti-brand-facebook"></i><strong>Facebook</strong></a>
+                <a href="#" class="social-card"><i class="ti ti-brand-instagram"></i><strong>Instagram</strong></a>
+                <a href="#" class="social-card"><i class="ti ti-brand-youtube"></i><strong>YouTube</strong></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Papamoa Tourism Project · <a href="index.html">Back to home</a></p>
+    </footer>
+
+</body>
+</html>
